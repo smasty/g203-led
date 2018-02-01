@@ -29,6 +29,7 @@ Usage:
 \tg203-led solid {color} - Solid color mode
 \tg203-led cycle [{rate} [{brightness}]] - Cycle through all colors
 \tg203-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+\tg203-led intro {on|off} - Enable/disable startup effect
 
 Arguments:
 \tColor: RRGGBB (RGB hex value)
@@ -54,6 +55,8 @@ def main():
             process_rate(args[3]),
             process_brightness(args[4])
         )
+    elif mode == 'intro':
+        set_intro_effect(args[2])
     else:
         print_error('Unknown mode.')
 
@@ -106,8 +109,21 @@ def set_led(mode, data):
 
     prefix = '11ff0e3b00'
     suffix = '000000000000'
-    data = prefix + mode + data + suffix
+    send_command(prefix + mode + data + suffix)
 
+
+def set_intro_effect(arg):
+    if arg == 'on' or arg == '1':
+        toggle = '01'
+    elif arg == 'off' or arg == '0':
+        toggle = '02'
+    else:
+        print_error('Invalid value.')
+
+    send_command('11ff0e5b0001'+toggle+'00000000000000000000000000')
+
+
+def send_command(data):
     attach_mouse()
     dev.ctrl_transfer(0x21, 0x09, 0x0211, wIndex, binascii.unhexlify(data))
     detach_mouse()
