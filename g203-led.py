@@ -1,6 +1,6 @@
 #!env/bin/python
 
-# Logitech G203 Prodigy LED Control
+# Logitech G203 Prodigy Mouse LED control
 # https://github.com/smasty/g203-led
 # Author: Smasty, hello@smasty.net
 # Licensed under the MIT license.
@@ -22,7 +22,7 @@ intf = None
 
 
 def help():
-    print("""Logitech G203 Prodigy LED control
+    print("""Logitech G203 Prodigy Mouse LED control
 
 Usage:
 \tg203-led solid {color} - Solid color mode

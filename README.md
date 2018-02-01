@@ -1,6 +1,6 @@
-# Logitech G203 Prodigy LED Control
+# Logitech G203 Prodigy Mouse LED control
 
-Allows you to control the LED lighting of your G203 programmatically.
+Allows you to control the LED lighting of your G203 Prodigy Mouse programmatically.
 Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led)
 
 ## Requirements
