@@ -7,7 +7,7 @@ Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led)
 
 - Python 3.5+
 - PyUSB 1.0.2+
-- *Root privileges*
+- **Root privileges**
 
 ## Installation
 
