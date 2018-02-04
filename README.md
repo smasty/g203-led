@@ -23,6 +23,7 @@ Usage:
     g203-led solid {color} - Solid color mode
     g203-led cycle [{rate} [{brightness}]] - Cycle through all colors
     g203-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+    203-led intro {on|off} - Enable/disable startup effect
 
 Arguments:
     Color: RRGGBB (RGB hex value)
