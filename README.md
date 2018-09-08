@@ -1,7 +1,8 @@
-# Logitech G203 Prodigy Mouse LED control
+# Logitech Prodigy Mouse LED control
 
 Allows you to control the LED lighting of your G203 Prodigy Mouse programmatically.
-Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led).
+Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led) and
+[g203-led](https://github.com/smasty/g203-led).
 
 ## Requirements
 
@@ -11,14 +12,21 @@ Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led).
 
 ## Installation
 
-1) Clone the repository: `git clone https://github.com/smasty/g203-led.git`
-2) Prepare _virtualenv_: `virtualenv ./env`
-3) Install dependencies: `env/bin/pip install -r requirements.txt`
-4) Run (as root): `sudo ./g203-led.py solid 00FFFF`
+1. Clone the repository: `git clone https://github.com/smasty/g203-led.git`
+2. Prepare _virtualenv_: `virtualenv ./env`
+3. Install dependencies: `env/bin/pip install -r requirements.txt`
+4. Run (as root) the script for your model:
+    - `sudo ./g203-led.py solid 00FFFF`
+    - `sudo ./g403-led.py solid 00FFFF`
+
+Note that the g403 has to independent lights: one on the scroll
+wheel, and one on the mouse itself. This script will set both
+lights to use the same configuration, but it can be
+customized to set them independently.
 
 ## Usage
 
-```
+```text
 Usage:
     g203-led solid {color} - Solid color mode
     g203-led cycle [{rate} [{brightness}]] - Cycle through all colors
