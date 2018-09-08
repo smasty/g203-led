@@ -26,12 +26,14 @@ customized to set them independently.
 
 ## Usage
 
+Make sure to use the script for your mouse model. The example below uses the `g403-led` script.
+
 ```text
 Usage:
-    g203-led solid {color} - Solid color mode
-    g203-led cycle [{rate} [{brightness}]] - Cycle through all colors
-    g203-led breathe {color} [{rate} [{brightness}]] - Single color breathing
-    g203-led intro {on|off} - Enable/disable startup effect
+    g403-led solid {color} - Solid color mode
+    g403-led cycle [{rate} [{brightness}]] - Cycle through all colors
+    g403-led breathe {color} [{rate} [{brightness}]] - Single color breathing
+    g403-led intro {on|off} - Enable/disable startup effect
 
 Arguments:
     Color: RRGGBB (RGB hex value)
