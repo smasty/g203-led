@@ -26,7 +26,7 @@ Usage:
     g203-led intro {on|off} - Enable/disable startup effect
 
 Arguments:
-    Color: RRGGBB (RGB hex value)
+    Color: RRGGBB (RGB hex value) or color name (Ex: blue)
     Rate: 100-60000 (Number of milliseconds. Default: 10000ms)
     Brightness: 0-100 (Percentage. Default: 100%)
 ```
