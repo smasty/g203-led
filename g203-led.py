@@ -10,6 +10,7 @@ import usb.core
 import usb.util
 import re
 import binascii
+from colour import Color
 
 g203_vendor_id =  0x046d
 g203_product_id = 0xc084
@@ -71,8 +72,14 @@ def process_color(color):
         print_error('No color specifed.')
     if color[0] == '#':
         color = color[1:]
-    if not re.match('^[0-9a-fA-F]{6}$', color):
+    if re.match(r'^[a-zA-Z]+$', color):
+        try:
+            color = Color(color).hex_l.strip('#')
+        except ValueError:
+            print_error('Invalid color specified.')
+    elif not re.match(r'^[0-9a-fA-F]{6}$', color):
         print_error('Invalid color specified.')
+
     return color.lower()
 
 def process_rate(rate):
@@ -109,7 +116,10 @@ def set_led(mode, data):
 
     prefix = '11ff0e3b00'
     suffix = '000000000000'
-    send_command(prefix + mode + data + suffix)
+    try:
+        send_command(prefix + mode + data + suffix)
+    except usb.core.USBError as USB:
+        print('Error', USB)
 
 
 def set_intro_effect(arg):
