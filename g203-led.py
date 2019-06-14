@@ -1,4 +1,4 @@
-#!env/bin/python
+#!/usr/bin/env python3
 
 # Logitech G203 Prodigy Mouse LED control
 # https://github.com/smasty/g203-led
