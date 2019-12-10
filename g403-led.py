@@ -1,6 +1,11 @@
 #!env/bin/python
 
-# Logitech g403 Prodigy Mouse LED control
+#
+# Logitech Mouse LED control
+#
+#  * G403 Prodigy Mouse
+#  * G403 HERO Gaming Mouse
+#
 # https://github.com/stelcheck/g403-led
 # Author: Smasty, hello@smasty.net
 # Licensed under the MIT license.
@@ -11,19 +16,22 @@ import usb.util
 import re
 import binascii
 
-g403_vendor_id =  0x046d
-g403_product_id = 0xc083
+vendor_id =  0x046d # Logitech
+
+compatible_devices = {
+    0xc083: "G403 Legacy Mouse",
+    0xc08f: "G403 HERO Gaming Mouse",
+}
 
 default_rate = 10000
 default_brightness = 100
-
 
 dev = None
 wIndex = None
 
 
 def help():
-    print("""Logitech G403 Prodigy Mouse LED control
+    print("""Logitech G403 Mouse LED control
 
 Usage:
 \tg403-led solid {color} - Solid color mode
@@ -104,7 +112,7 @@ def set_led_cycle(rate, brightness):
 
 
 def set_led(mode, data):
-    global dev
+    global device
     global wIndex
 
     prefix_scrollwheel = '11ff0e3b00'
@@ -128,29 +136,36 @@ def set_intro_effect(arg):
 
 def send_command(data):
     attach_mouse()
-    dev.ctrl_transfer(0x21, 0x09, 0x0211, wIndex, binascii.unhexlify(data))
+    device.ctrl_transfer(0x21, 0x09, 0x0211, wIndex, binascii.unhexlify(data))
     detach_mouse()
 
 
 def attach_mouse():
-    global dev
+    global device
     global wIndex
-    dev = usb.core.find(idVendor=g403_vendor_id, idProduct=g403_product_id)
-    if dev is None:
-        print_error('Device {:04x}:{:04x} not found.'.format(g403_vendor_id, g403_product_id))
+
+    for product_id, product_title in compatible_devices.items():
+        device = usb.core.find(idVendor=vendor_id, idProduct=product_id)
+        if device is not None:
+            #print("Found {}".format(product_title))
+            break
+
+    if device is None:
+        print_error('No compatible devices found.')
+
     wIndex = 0x01
-    if dev.is_kernel_driver_active(wIndex) is True:
-        dev.detach_kernel_driver(wIndex)
-        usb.util.claim_interface(dev, wIndex)
+    if device.is_kernel_driver_active(wIndex) is True:
+        device.detach_kernel_driver(wIndex)
+        usb.util.claim_interface(device, wIndex)
 
 
 def detach_mouse():
-    global dev
+    global device
     global wIndex
     if wIndex is not None:
-        usb.util.release_interface(dev, wIndex)
-        dev.attach_kernel_driver(wIndex)
-        dev = None
+        usb.util.release_interface(device, wIndex)
+        device.attach_kernel_driver(wIndex)
+        device = None
         wIndex = None
 
 
