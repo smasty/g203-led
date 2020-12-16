@@ -3,6 +3,8 @@
 Allows you to control the LED lighting of your G203 Prodigy Mouse programmatically.
 Inspired by and based on [g810-led](https://github.com/MatMoul/g810-led).
 
+It does not work as-is with the new G203 Lightsync Mouse.
+
 ## Requirements
 
 - Python 3.5+
