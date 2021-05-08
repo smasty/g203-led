@@ -1,9 +1,8 @@
 #!env/bin/python
 
-# Logitech G203 Prodigy Mouse LED control
-# Altered to work with G203 LightSync instead by TheAquaSheep
+# Logitech G203 Prodigy / G203 LightSync Mouse LED control
 # https://github.com/smasty/g203-led
-# Author: Smasty, hello@smasty.net
+# Authors: Smasty, TheAquaSheep (LightSync support)
 # Licensed under the MIT license.
 
 import sys
