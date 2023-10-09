@@ -13,7 +13,7 @@ import binascii
 
 g203_vendor_id =  0x046d
 g203_prodigy_product_id = 0xc084
-g203_lightsync_product_id = 0xc092
+g203_lightsync_product_id = 0xc09d
 g203_product_id = g203_prodigy_product_id
 
 default_rate = 10000
@@ -197,7 +197,7 @@ def set_intro_effect(arg):
 
 def set_dpi(dpi):
     cmd = '10ff0a3b00{}'.format(dpi)
-    send_command(cmd, disable_ls_onboard_memory=False)
+    send_command(cmd, disable_ls_onboard_memory=True)
 
 def set_ls_solid(color):
     cmd = '11ff0e1b0001{}0000000000000001000000'.format(color)
